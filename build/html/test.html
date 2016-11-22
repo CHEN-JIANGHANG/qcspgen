@@ -1,0 +1,403 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>aggregator module &mdash; qcspgen 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="qcspgen 0.1 documentation" href="index.html" />
+    <link rel="prev" title="Welcome to qcspgen’s documentation!" href="index.html" />
+   
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-aggregator">
+<span id="aggregator-module"></span><h1>aggregator module<a class="headerlink" href="#module-aggregator" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="aggregator.Aggregator">
+<em class="property">class </em><code class="descclassname">aggregator.</code><code class="descname">Aggregator</code><span class="sig-paren">(</span><em>item_kind</em><span class="sig-paren">)</span><a class="headerlink" href="#aggregator.Aggregator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>python list like base class, example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">a</span> <span class="o">=</span> <span class="n">Aggregator</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+<span class="n">a</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">)</span>
+<span class="n">a</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&quot;world&quot;</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">a</span><span class="o">.</span><span class="n">aggregator</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">item_type</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>item_kind</strong> &#8211; the item type for aggregator&#8217;s elements</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="aggregator.Aggregator.aggregation">
+<code class="descname">aggregation</code><a class="headerlink" href="#aggregator.Aggregator.aggregation" title="Permalink to this definition">¶</a></dt>
+<dd><p>getter for _aggregation</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">the list of added items</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="aggregator.Aggregator.append">
+<code class="descname">append</code><span class="sig-paren">(</span><em>item</em><span class="sig-paren">)</span><a class="headerlink" href="#aggregator.Aggregator.append" title="Permalink to this definition">¶</a></dt>
+<dd><p>to add an item for an aggregator</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>item</strong> &#8211; the item to be appended</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="aggregator.Aggregator.empty">
+<code class="descname">empty</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#aggregator.Aggregator.empty" title="Permalink to this definition">¶</a></dt>
+<dd><p>to empty an aggregator</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="aggregator.Aggregator.item_type">
+<code class="descname">item_type</code><a class="headerlink" href="#aggregator.Aggregator.item_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>getter for _type</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">acceptable type for items of an aggregator</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="aggregator.Aggregator.remove">
+<code class="descname">remove</code><span class="sig-paren">(</span><em>item</em><span class="sig-paren">)</span><a class="headerlink" href="#aggregator.Aggregator.remove" title="Permalink to this definition">¶</a></dt>
+<dd><p>to remove an item from an aggregator</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>item</strong> &#8211; the item to be removed</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="aggregator.verify_type">
+<code class="descclassname">aggregator.</code><code class="descname">verify_type</code><span class="sig-paren">(</span><em>func</em><span class="sig-paren">)</span><a class="headerlink" href="#aggregator.verify_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>decorator to verify item type supplied for the wrapped function</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>func</strong> &#8211; decorated function</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">wrapper</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-qcspgen">
+<span id="qcspgen-module"></span><h1>qcspgen module<a class="headerlink" href="#module-qcspgen" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="qcspgen.Instance">
+<em class="property">class </em><code class="descclassname">qcspgen.</code><code class="descname">Instance</code><span class="sig-paren">(</span><em>safety_margin</em>, <em>vessel</em>, <em>quay</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#qcspgen.Instance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>safety_margin</strong> &#8211; safety margin between two consecutive quay cranes</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="qcspgen.Instance.generate">
+<code class="descname">generate</code><span class="sig-paren">(</span><em>path='./output'</em>, <em>name='QCSP.txt'</em>, <em>style='opl'</em><span class="sig-paren">)</span><a class="headerlink" href="#qcspgen.Instance.generate" title="Permalink to this definition">¶</a></dt>
+<dd><p>to generate output file by given file style</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>path</strong> &#8211; to specify the path of the generated file</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="qcspgen.Instance.quay">
+<code class="descname">quay</code><a class="headerlink" href="#qcspgen.Instance.quay" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="qcspgen.Instance.safety_margin">
+<code class="descname">safety_margin</code><a class="headerlink" href="#qcspgen.Instance.safety_margin" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="qcspgen.Instance.seed">
+<em class="property">static </em><code class="descname">seed</code><span class="sig-paren">(</span><em>sd</em><span class="sig-paren">)</span><a class="headerlink" href="#qcspgen.Instance.seed" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="qcspgen.Instance.vessel">
+<code class="descname">vessel</code><a class="headerlink" href="#qcspgen.Instance.vessel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="qcspgen.generate_benchmark">
+<code class="descclassname">qcspgen.</code><code class="descname">generate_benchmark</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#qcspgen.generate_benchmark" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-bay">
+<span id="bay-module"></span><h1>bay module<a class="headerlink" href="#module-bay" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="bay.Bay">
+<em class="property">class </em><code class="descclassname">bay.</code><code class="descname">Bay</code><span class="sig-paren">(</span><em>capacity</em>, <em>index</em><span class="sig-paren">)</span><a class="headerlink" href="#bay.Bay" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#aggregator.Aggregator" title="aggregator.Aggregator"><code class="xref py py-class docutils literal"><span class="pre">aggregator.Aggregator</span></code></a></p>
+<p>bay object which is an aggregator for task objects, example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">b</span> <span class="o">=</span> <span class="n">Bay</span><span class="p">(</span><span class="n">capacity</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">t1</span> <span class="o">=</span> <span class="n">Task</span><span class="p">()</span>
+<span class="n">t2</span> <span class="o">=</span> <span class="n">Task</span><span class="p">()</span>
+<span class="n">t3</span> <span class="o">=</span> <span class="n">Task</span><span class="p">()</span>
+<span class="n">b</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="p">,</span> <span class="n">t3</span><span class="p">)</span>
+<span class="n">b</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">t3</span><span class="p">,</span> <span class="n">t2</span><span class="p">)</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>capacity</strong> &#8211; the maximal number of containers that a bay can hold</li>
+<li><strong>index</strong> &#8211; the index of a bay</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="bay.Bay.aggregate_task_processing_time">
+<code class="descname">aggregate_task_processing_time</code><a class="headerlink" href="#bay.Bay.aggregate_task_processing_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>getter for bay aggregated task processing time</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">the aggregated task processing time of the bay</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="bay.Bay.append">
+<code class="descname">append</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="headerlink" href="#bay.Bay.append" title="Permalink to this definition">¶</a></dt>
+<dd><p>overridden method for Aggregator <code class="docutils literal"><span class="pre">append</span></code>, to append a list of tasks into a bay</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>args</strong> &#8211; a list of tasks</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="bay.Bay.empty">
+<code class="descname">empty</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#bay.Bay.empty" title="Permalink to this definition">¶</a></dt>
+<dd><p>overridden method for Aggregator <code class="docutils literal"><span class="pre">empty</span></code>, to empty all the added tasks</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bay.Bay.index">
+<code class="descname">index</code><a class="headerlink" href="#bay.Bay.index" title="Permalink to this definition">¶</a></dt>
+<dd><p>getter for bay index</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">index of the bay</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bay.Bay.remaining_capacity">
+<code class="descname">remaining_capacity</code><a class="headerlink" href="#bay.Bay.remaining_capacity" title="Permalink to this definition">¶</a></dt>
+<dd><p>getter for bay remaining capacity</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">the remaining capacity of the bay</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="bay.Bay.remove">
+<code class="descname">remove</code><span class="sig-paren">(</span><em>*args</em><span class="sig-paren">)</span><a class="headerlink" href="#bay.Bay.remove" title="Permalink to this definition">¶</a></dt>
+<dd><p>overridden method for Aggregator <code class="docutils literal"><span class="pre">remove</span></code>, to remove a list of tasks from a bay</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>args</strong> &#8211; a list of tasks</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="bay.Bay.tasks">
+<code class="descname">tasks</code><a class="headerlink" href="#bay.Bay.tasks" title="Permalink to this definition">¶</a></dt>
+<dd><p>getter for all the added tasks</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">all the added tasks</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">aggregator module</a></li>
+<li><a class="reference internal" href="#module-qcspgen">qcspgen module</a></li>
+<li><a class="reference internal" href="#module-bay">bay module</a></li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Welcome to qcspgen&#8217;s documentation!</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/test.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2016, Chen Jiang Hang.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.3.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.7</a>
+      
+      |
+      <a href="_sources/test.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
