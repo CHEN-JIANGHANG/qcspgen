@@ -43,10 +43,10 @@
 <dt id="aggregator.Aggregator">
 <em class="property">class </em><code class="descclassname">aggregator.</code><code class="descname">Aggregator</code><span class="sig-paren">(</span><em>item_kind</em><span class="sig-paren">)</span><a class="headerlink" href="#aggregator.Aggregator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
-<p>python list like base class, example:</p>
+<p>python list like base class to store items in the same type, example:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">a</span> <span class="o">=</span> <span class="n">Aggregator</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
-<span class="n">a</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">)</span>
-<span class="n">a</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&quot;world&quot;</span><span class="p">)</span>
+<span class="n">a</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;hello&quot;</span><span class="p">)</span>
+<span class="n">a</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;world&quot;</span><span class="p">)</span>
 <span class="k">print</span> <span class="n">a</span><span class="o">.</span><span class="n">aggregator</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">item_type</span>
 </pre></div>
 </div>
@@ -213,102 +213,6 @@
 </dd></dl>
 
 </div>
-<div class="section" id="module-qcspgen">
-<span id="qcspgen-module"></span><h1>qcspgen module<a class="headerlink" href="#module-qcspgen" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
-<dt id="qcspgen.Instance">
-<em class="property">class </em><code class="descclassname">qcspgen.</code><code class="descname">Instance</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#qcspgen.Instance" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
-<p>Instance class is used to generate QCSP instances, for example:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="n">Instance</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">12345</span><span class="p">)</span>
-<span class="n">v</span> <span class="o">=</span> <span class="n">Vessel</span><span class="p">(</span><span class="n">b</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s">&quot;uni&quot;</span><span class="p">)</span>
-<span class="n">qu</span> <span class="o">=</span> <span class="n">Quay</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ready_time</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">instance</span> <span class="o">=</span> <span class="n">Instance</span><span class="p">(</span><span class="n">safety_margin</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">vessel</span><span class="o">=</span><span class="n">v</span><span class="p">,</span> <span class="n">quay</span><span class="o">=</span><span class="n">qu</span><span class="p">)</span>
-<span class="n">instance</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s">&quot;json&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&quot;QCSP.json&quot;</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="s">&quot;./output&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>safety_margin</strong> &#8211; prefix:<code class="docutils literal"><span class="pre">safety</span> <span class="pre">margin</span> <span class="pre">between</span> <span class="pre">two</span> <span class="pre">consecutive</span> <span class="pre">QCs</span></code>,type:<code class="docutils literal"><span class="pre">int</span></code>,range:<code class="docutils literal"><span class="pre">[0,</span> <span class="pre">inf)</span></code></li>
-<li><strong>vessel</strong> &#8211; prefix:<code class="docutils literal"><span class="pre">vessel</span> <span class="pre">for</span> <span class="pre">an</span> <span class="pre">instance</span></code>, type:<code class="docutils literal"><span class="pre">Vessel</span></code></li>
-<li><strong>quay</strong> &#8211; prefix:<code class="docutils literal"><span class="pre">quay</span> <span class="pre">for</span> <span class="pre">an</span> <span class="pre">instance</span></code>, type:<code class="docutils literal"><span class="pre">Quay</span></code></li>
-<li><strong>kwargs</strong> &#8211; other options, e.g., &#8216;fixed&#8217;, which means that the initial location of QCs are given by kwargs[&#8216;fixed&#8217;]</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">None</p>
-</td>
-</tr>
-</tbody>
-</table>
-<dl class="method">
-<dt id="qcspgen.Instance.generate">
-<code class="descname">generate</code><span class="sig-paren">(</span><em>path='./output'</em>, <em>name='QCSP.txt'</em>, <em>style='opl'</em><span class="sig-paren">)</span><a class="headerlink" href="#qcspgen.Instance.generate" title="Permalink to this definition">¶</a></dt>
-<dd><p>to generate output file by given file style</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>path</strong> &#8211; to specify the path of the generated file</li>
-<li><strong>name</strong> &#8211; the name of the generated file</li>
-<li><strong>style</strong> &#8211; the style of the generated file, currelty supported file stypes are &#8216;opl&#8217; and &#8216;json&#8217;</li>
-</ul>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="qcspgen.Instance.quay">
-<code class="descname">quay</code><a class="headerlink" href="#qcspgen.Instance.quay" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="qcspgen.Instance.safety_margin">
-<code class="descname">safety_margin</code><a class="headerlink" href="#qcspgen.Instance.safety_margin" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="staticmethod">
-<dt id="qcspgen.Instance.seed">
-<em class="property">static </em><code class="descname">seed</code><span class="sig-paren">(</span><em>sd</em><span class="sig-paren">)</span><a class="headerlink" href="#qcspgen.Instance.seed" title="Permalink to this definition">¶</a></dt>
-<dd><p>function to change the seed of random functions used in this module</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>sd</strong> &#8211; a random number seed</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="qcspgen.Instance.vessel">
-<code class="descname">vessel</code><a class="headerlink" href="#qcspgen.Instance.vessel" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="function">
-<dt id="qcspgen.generate_benchmark">
-<code class="descclassname">qcspgen.</code><code class="descname">generate_benchmark</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#qcspgen.generate_benchmark" title="Permalink to this definition">¶</a></dt>
-<dd><p>function to generate benchmarks ABCDEFG</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</div>
 <div class="section" id="module-bay">
 <span id="bay-module"></span><h1>bay module<a class="headerlink" href="#module-bay" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
@@ -448,8 +352,8 @@
 <em class="property">class </em><code class="descclassname">vessel.</code><code class="descname">Vessel</code><span class="sig-paren">(</span><em>std=0.25</em>, <em>means=None</em>, <em>existing_tasks=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#vessel.Vessel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#aggregator.Aggregator" title="aggregator.Aggregator"><code class="xref py py-class docutils literal"><span class="pre">aggregator.Aggregator</span></code></a></p>
 <p>vessel class which is an aggregator of bays (BTW, bay is an aggregator of tasks). For detailed construction of a
-vessel object, please refer to <em>A unified approach for the evaluation of quay crane scheduling models and algorithms</em>,
-published in <strong>Computer &amp; Operations Research</strong></p>
+vessel object, please refer to <em>A unified approach for the evaluation of quay crane scheduling models and algorithms
+*, published in **Computer &amp; Operations Research*</em></p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -510,6 +414,16 @@ published in <strong>Computer &amp; Operations Research</strong></p>
 :param density: prefix:<code class="docutils literal"><span class="pre">density</span></code>, type:<code class="docutils literal"><span class="pre">int,</span> <span class="pre">float</span></code>, range:<code class="docutils literal"><span class="pre">[0,</span> <span class="pre">inf)</span></code>
 :return: pij</p>
 </dd></dl>
+
+<dl class="method">
+<dt id="vessel.Vessel.cl1_distribution">
+<code class="descname">cl1_distribution</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vessel.Vessel.cl1_distribution" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="vessel.Vessel.cl2_distribution">
+<code class="descname">cl2_distribution</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vessel.Vessel.cl2_distribution" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="method">
 <dt id="vessel.Vessel.clone">
@@ -622,6 +536,524 @@ If needed, any transitive arcs can then be added.</p>
 <code class="descname">task_size</code><a class="headerlink" href="#vessel.Vessel.task_size" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="method">
+<dt id="vessel.Vessel.uni_distribution">
+<code class="descname">uni_distribution</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#vessel.Vessel.uni_distribution" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-qc">
+<span id="qc-module"></span><h1>qc module<a class="headerlink" href="#module-qc" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="qc.QC">
+<em class="property">class </em><code class="descclassname">qc.</code><code class="descname">QC</code><a class="headerlink" href="#qc.QC" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>quay crane class</p>
+<ul class="simple">
+<li><cite>ID</cite>: is a class attribute to count how may quay cranes has been created</li>
+<li><cite>PROPERTY</cite>: is a tuple of the available instance attributes for a quay crane object</li>
+</ul>
+<dl class="attribute">
+<dt id="qc.QC.ID">
+<code class="descname">ID</code><em class="property"> = 1</em><a class="headerlink" href="#qc.QC.ID" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="qc.QC.PROPERTY">
+<code class="descname">PROPERTY</code><em class="property"> = ('ready_time', 'due_date', 'initial_location', 't', 'handling_efficiency_factor', 'index')</em><a class="headerlink" href="#qc.QC.PROPERTY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="qc.QC.due_date">
+<code class="descname">due_date</code><a class="headerlink" href="#qc.QC.due_date" title="Permalink to this definition">¶</a></dt>
+<dd><p>getter for due date</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">due date</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="qc.QC.handling_efficiency_factor">
+<code class="descname">handling_efficiency_factor</code><a class="headerlink" href="#qc.QC.handling_efficiency_factor" title="Permalink to this definition">¶</a></dt>
+<dd><p>getter for quay crane handling efficiency</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">handling efficiency</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="qc.QC.index">
+<code class="descname">index</code><a class="headerlink" href="#qc.QC.index" title="Permalink to this definition">¶</a></dt>
+<dd><p>getter for index</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">index</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="qc.QC.initial_location">
+<code class="descname">initial_location</code><a class="headerlink" href="#qc.QC.initial_location" title="Permalink to this definition">¶</a></dt>
+<dd><p>getter for location</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">location</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="qc.QC.ready_time">
+<code class="descname">ready_time</code><a class="headerlink" href="#qc.QC.ready_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>getter for ready time</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">ready time</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="qc.QC.t">
+<code class="descname">t</code><a class="headerlink" href="#qc.QC.t" title="Permalink to this definition">¶</a></dt>
+<dd><p>getter for the time for a quay crane to traverse a distance of one bay, i.e., sort of reciprocal of speed</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">reciprocal of speed</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-quay">
+<span id="quay-module"></span><h1>quay module<a class="headerlink" href="#module-quay" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="quay.Quay">
+<em class="property">class </em><code class="descclassname">quay.</code><code class="descname">Quay</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#quay.Quay" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#aggregator.Aggregator" title="aggregator.Aggregator"><code class="xref py py-class docutils literal"><span class="pre">aggregator.Aggregator</span></code></a></p>
+<p>quay object is an aggregation of quay cranes. Different from other aggregators, for its initialization, you need to
+supply the number of quay cranes, n (n&gt;0) and quay cranes&#8217; properties that you would like to set. For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">qu</span> <span class="o">=</span> <span class="n">Quay</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ready_time</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="n">due_date</span><span class="o">=</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span>
+<span class="k">print</span> <span class="n">qu</span>
+</pre></div>
+</div>
+<p>Note that if a property of a quay crane is identical for all quay cranes in the quay, you can squeeze the argument
+list into one value.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>n</strong> &#8211; the number of quay cranes of the quay</li>
+<li><strong>kwargs</strong> &#8211; properties of quay cranes</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="quay.Quay.qcs">
+<code class="descname">qcs</code><a class="headerlink" href="#quay.Quay.qcs" title="Permalink to this definition">¶</a></dt>
+<dd><p>getter for quay crane list</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">quay crane added in the quay</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-checker">
+<span id="checker-module"></span><h1>checker module<a class="headerlink" href="#module-checker" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="checker.ArgElement">
+<em class="property">class </em><code class="descclassname">checker.</code><code class="descname">ArgElement</code><span class="sig-paren">(</span><em>name</em>, <em>doc</em><span class="sig-paren">)</span><a class="headerlink" href="#checker.ArgElement" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>class to analyze docstring of functions/classes in order to make sure variable prefix/range/type are correct.
+For example, &#8216;:param index: prefix:<code class="docutils literal"><span class="pre">index</span> <span class="pre">of</span> <span class="pre">a</span> <span class="pre">bay``with</span> <span class="pre">type:``int``in</span> <span class="pre">range:``[1,inf)</span></code>&#8216; is an element of
+_ArgElement, which needs to be checked in functions</p>
+<dl class="attribute">
+<dt id="checker.ArgElement.PATTERN_TEMPLATE">
+<code class="descname">PATTERN_TEMPLATE</code><em class="property"> = ':param {0}:.*{1}:``(.*?)``'</em><a class="headerlink" href="#checker.ArgElement.PATTERN_TEMPLATE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="checker.ArgElement.is_numeric">
+<code class="descname">is_numeric</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#checker.ArgElement.is_numeric" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="checker.ArgElement.name">
+<code class="descname">name</code><em class="property"> = None</em><a class="headerlink" href="#checker.ArgElement.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="checker.ArgElement.prefix">
+<code class="descname">prefix</code><em class="property"> = ''</em><a class="headerlink" href="#checker.ArgElement.prefix" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="checker.ArgElement.range">
+<code class="descname">range</code><em class="property"> = None</em><a class="headerlink" href="#checker.ArgElement.range" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="checker.ArgElement.split">
+<em class="property">static </em><code class="descname">split</code><span class="sig-paren">(</span><em>t</em><span class="sig-paren">)</span><a class="headerlink" href="#checker.ArgElement.split" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="checker.ArgElement.to_consider">
+<code class="descname">to_consider</code><em class="property"> = True</em><a class="headerlink" href="#checker.ArgElement.to_consider" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="checker.ArgElement.type">
+<code class="descname">type</code><em class="property"> = None</em><a class="headerlink" href="#checker.ArgElement.type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="checker.Interval">
+<em class="property">class </em><code class="descclassname">checker.</code><code class="descname">Interval</code><span class="sig-paren">(</span><em>doc</em><span class="sig-paren">)</span><a class="headerlink" href="#checker.Interval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>class for value pair in the format (lb, ub) or [lb, ub] or (lb, ub], or [lb, ub). Constructed by supplying
+a string of aforementioned format.</p>
+<dl class="attribute">
+<dt id="checker.Interval.DIGIT_PATTERN">
+<code class="descname">DIGIT_PATTERN</code><em class="property"> = &lt;_sre.SRE_Pattern object&gt;</em><a class="headerlink" href="#checker.Interval.DIGIT_PATTERN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="checker.Interval.check_range">
+<code class="descname">check_range</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#checker.Interval.check_range" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="checker.Interval.left">
+<code class="descname">left</code><em class="property"> = -inf</em><a class="headerlink" href="#checker.Interval.left" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="checker.Interval.left_symbol">
+<code class="descname">left_symbol</code><em class="property"> = '('</em><a class="headerlink" href="#checker.Interval.left_symbol" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="checker.Interval.left_tight">
+<code class="descname">left_tight</code><em class="property"> = False</em><a class="headerlink" href="#checker.Interval.left_tight" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="checker.Interval.right">
+<code class="descname">right</code><em class="property"> = inf</em><a class="headerlink" href="#checker.Interval.right" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="checker.Interval.right_symbol">
+<code class="descname">right_symbol</code><em class="property"> = ')'</em><a class="headerlink" href="#checker.Interval.right_symbol" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="checker.Interval.right_tight">
+<code class="descname">right_tight</code><em class="property"> = False</em><a class="headerlink" href="#checker.Interval.right_tight" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="checker.compulsory_kwargs">
+<code class="descclassname">checker.</code><code class="descname">compulsory_kwargs</code><span class="sig-paren">(</span><em>kwargs</em>, <em>compulsory</em><span class="sig-paren">)</span><a class="headerlink" href="#checker.compulsory_kwargs" title="Permalink to this definition">¶</a></dt>
+<dd><p>function to check if <cite>kwargs</cite> contains <cite>compulsory</cite> or not. If no, raise a QCSPGenException.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>kwargs</strong> &#8211; key word arguments to be checked</li>
+<li><strong>compulsory</strong> &#8211; compulsory key word dicts</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Exception:</th><td class="field-body"><p class="first last">QCSPGenException</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="checker.func_arg_check">
+<code class="descclassname">checker.</code><code class="descname">func_arg_check</code><span class="sig-paren">(</span><em>func</em><span class="sig-paren">)</span><a class="headerlink" href="#checker.func_arg_check" title="Permalink to this definition">¶</a></dt>
+<dd><p>a decoration function to do argument properties check!
+Note that if docstring of func is empty then no checking will be conducted.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>func</strong> &#8211; function</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a wrapper</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="checker.verify_is_in">
+<code class="descclassname">checker.</code><code class="descname">verify_is_in</code><span class="sig-paren">(</span><em>data</em>, <em>data_range</em><span class="sig-paren">)</span><a class="headerlink" href="#checker.verify_is_in" title="Permalink to this definition">¶</a></dt>
+<dd><p>function to check if <cite>data</cite> is in <cite>data_range</cite>. If no, raise a QCSPGenException.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> &#8211; a string to be checked</li>
+<li><strong>data_range</strong> &#8211; legitimate data range</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Exception:</th><td class="field-body"><p class="first">QCSPGenException</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">data</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="checker.verify_numerical_type">
+<code class="descclassname">checker.</code><code class="descname">verify_numerical_type</code><span class="sig-paren">(</span><em>data</em>, <em>t=(&lt;type 'int'&gt;</em>, <em>&lt;type 'float'&gt;)</em>, <em>lb=0.0</em>, <em>ub=inf</em>, <em>prefix=''</em>, <em>left_tight=True</em>, <em>right_tight=True</em><span class="sig-paren">)</span><a class="headerlink" href="#checker.verify_numerical_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>function to check the input <cite>data</cite> is numerical and besides, it is in the range of (lb, ub) or [lb, ub] or (lb, ub],
+or [lb, ub).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> &#8211; the input to be checked</li>
+<li><strong>t</strong> &#8211; int or float</li>
+<li><strong>lb</strong> &#8211; lower bound</li>
+<li><strong>ub</strong> &#8211; upper bound</li>
+<li><strong>prefix</strong> &#8211; a prefix for the raised QCSPGenException message</li>
+<li><strong>left_tight</strong> &#8211; if True, then lb can be reached</li>
+<li><strong>right_tight</strong> &#8211; if True, then ub can be reached</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Exception:</th><td class="field-body"><p class="first">QCSPGenException</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">data</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="checker.verify_type">
+<code class="descclassname">checker.</code><code class="descname">verify_type</code><span class="sig-paren">(</span><em>data</em>, <em>t</em>, <em>prefix=''</em><span class="sig-paren">)</span><a class="headerlink" href="#checker.verify_type" title="Permalink to this definition">¶</a></dt>
+<dd><p>function to check if <cite>data</cite> is type <cite>t</cite>. If no, raise a QCSPGenException.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> &#8211; data to be checked</li>
+<li><strong>t</strong> &#8211; expected legitimate data type</li>
+<li><strong>prefix</strong> &#8211; a prefix for the raised QCSPGenException message</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Exception:</th><td class="field-body"><p class="first">QCSPGenException</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">data</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-template">
+<span id="template-module"></span><h1>template module<a class="headerlink" href="#module-template" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="section" id="module-qcspgen">
+<span id="qcspgen-module"></span><h1>qcspgen module<a class="headerlink" href="#module-qcspgen" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="qcspgen.Instance">
+<em class="property">class </em><code class="descclassname">qcspgen.</code><code class="descname">Instance</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#qcspgen.Instance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Instance class is used to generate QCSP instances, for example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">Instance</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">12345</span><span class="p">)</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">Vessel</span><span class="p">(</span><span class="n">b</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="n">n</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s2">&quot;uni&quot;</span><span class="p">)</span>
+<span class="n">qu</span> <span class="o">=</span> <span class="n">Quay</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">t</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ready_time</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">instance</span> <span class="o">=</span> <span class="n">Instance</span><span class="p">(</span><span class="n">safety_margin</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">vessel</span><span class="o">=</span><span class="n">v</span><span class="p">,</span> <span class="n">quay</span><span class="o">=</span><span class="n">qu</span><span class="p">)</span>
+<span class="n">instance</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;json&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;QCSP.json&quot;</span><span class="p">,</span> <span class="n">path</span><span class="o">=</span><span class="s2">&quot;./output&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>safety_margin</strong> &#8211; prefix:<code class="docutils literal"><span class="pre">safety</span> <span class="pre">margin</span> <span class="pre">between</span> <span class="pre">two</span> <span class="pre">consecutive</span> <span class="pre">QCs</span></code>,type:<code class="docutils literal"><span class="pre">int</span></code>,range:<code class="docutils literal"><span class="pre">[0,</span> <span class="pre">inf)</span></code></li>
+<li><strong>vessel</strong> &#8211; prefix:<code class="docutils literal"><span class="pre">vessel</span> <span class="pre">for</span> <span class="pre">an</span> <span class="pre">instance</span></code>, type:<code class="docutils literal"><span class="pre">Vessel</span></code></li>
+<li><strong>quay</strong> &#8211; prefix:<code class="docutils literal"><span class="pre">quay</span> <span class="pre">for</span> <span class="pre">an</span> <span class="pre">instance</span></code>, type:<code class="docutils literal"><span class="pre">Quay</span></code></li>
+<li><strong>kwargs</strong> &#8211; other options, e.g., &#8216;fixed&#8217;, which means that the initial location of QCs are given by kwargs[&#8216;fixed&#8217;]</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">None</p>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="qcspgen.Instance.generate">
+<code class="descname">generate</code><span class="sig-paren">(</span><em>path='.'</em>, <em>name='QCSP.txt'</em>, <em>style='opl'</em><span class="sig-paren">)</span><a class="headerlink" href="#qcspgen.Instance.generate" title="Permalink to this definition">¶</a></dt>
+<dd><p>to generate output file by given file style</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>path</strong> &#8211; to specify the path of the generated file</li>
+<li><strong>name</strong> &#8211; the name of the generated file</li>
+<li><strong>style</strong> &#8211; the style of the generated file, currelty supported file stypes are &#8216;opl&#8217; and &#8216;json&#8217;</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="qcspgen.Instance.quay">
+<code class="descname">quay</code><a class="headerlink" href="#qcspgen.Instance.quay" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="qcspgen.Instance.safety_margin">
+<code class="descname">safety_margin</code><a class="headerlink" href="#qcspgen.Instance.safety_margin" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="qcspgen.Instance.seed">
+<em class="property">static </em><code class="descname">seed</code><span class="sig-paren">(</span><em>sd=None</em><span class="sig-paren">)</span><a class="headerlink" href="#qcspgen.Instance.seed" title="Permalink to this definition">¶</a></dt>
+<dd><p>function to change the seed of random functions used in this module</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>sd</strong> &#8211; a random number seed</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="qcspgen.Instance.vessel">
+<code class="descname">vessel</code><a class="headerlink" href="#qcspgen.Instance.vessel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="qcspgen.generate_benchmark">
+<code class="descclassname">qcspgen.</code><code class="descname">generate_benchmark</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#qcspgen.generate_benchmark" title="Permalink to this definition">¶</a></dt>
+<dd><p>function to generate benchmarks ABCDEFG</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-qcspgen_exception">
+<span id="qcspgen-exception-module"></span><h1>qcspgen exception module<a class="headerlink" href="#module-qcspgen_exception" title="Permalink to this headline">¶</a></h1>
+<dl class="exception">
+<dt id="qcspgen_exception.QCSPGenException">
+<em class="property">exception </em><code class="descclassname">qcspgen_exception.</code><code class="descname">QCSPGenException</code><span class="sig-paren">(</span><em>message</em><span class="sig-paren">)</span><a class="headerlink" href="#qcspgen_exception.QCSPGenException" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">exceptions.Exception</span></code></p>
+<p>exception for qcspgen module</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>message</strong> &#8211; the message of the exception</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="qcspgen_exception.QCSPGenException.display">
+<code class="descname">display</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#qcspgen_exception.QCSPGenException.display" title="Permalink to this definition">¶</a></dt>
+<dd><p>to display exception traceback info and message</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="qcspgen_exception.QCSPGenException.traceback">
+<em class="property">static </em><code class="descname">traceback</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#qcspgen_exception.QCSPGenException.traceback" title="Permalink to this definition">¶</a></dt>
+<dd><p>staticmethod in order to trace the errors</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">call stack information</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
 </dd></dl>
 
 </div>
@@ -636,9 +1068,14 @@ If needed, any transitive arcs can then be added.</p>
   <ul>
 <li><a class="reference internal" href="#">aggregator module</a></li>
 <li><a class="reference internal" href="#module-task">task module</a></li>
-<li><a class="reference internal" href="#module-qcspgen">qcspgen module</a></li>
 <li><a class="reference internal" href="#module-bay">bay module</a></li>
 <li><a class="reference internal" href="#module-vessel">vessel module</a></li>
+<li><a class="reference internal" href="#module-qc">qc module</a></li>
+<li><a class="reference internal" href="#module-quay">quay module</a></li>
+<li><a class="reference internal" href="#module-checker">checker module</a></li>
+<li><a class="reference internal" href="#module-template">template module</a></li>
+<li><a class="reference internal" href="#module-qcspgen">qcspgen module</a></li>
+<li><a class="reference internal" href="#module-qcspgen_exception">qcspgen exception module</a></li>
 </ul>
 <div class="relations">
 <h3>Related Topics</h3>

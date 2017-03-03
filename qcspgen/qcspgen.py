@@ -29,7 +29,7 @@ class Instance(object):
     """
 
     @staticmethod
-    def seed(sd):
+    def seed(sd=None):
         """
         function to change the seed of random functions used in this module
 
@@ -90,7 +90,7 @@ class Instance(object):
         for i, q in enumerate(self.quay.qcs):
             q.initial_location = l0[i]
 
-    def generate(self, path="./", name="QCSP.txt", style="opl"):
+    def generate(self, path=".", name="QCSP.txt", style="opl"):
         """
         to generate output file by given file style
 
@@ -254,11 +254,16 @@ def generate_benchmark():
 
 if __name__ == "__main__":
     try:
-        Instance.seed(123)
-        v = Vessel(b=10, c=200, f=0.5, d=1.0, g=0.0, n=20, loc="uni")
-        qu = Quay(2, t=1, ready_time=0)
-        instance = Instance(safety_margin=1, vessel=v, quay=qu)
-        instance.generate(style="json", name="test.json")
+        Instance.seed()
+        v = Vessel(b=20, c=600, f=0.5, d=1.0, g=0.0, n=20, loc="uni")
+        q = Quay(6, t=1, ready_time=[0, 2, 4, 6, 8, 0])
+        instance = Instance(safety_margin=1, vessel=v, quay=q)
+        instance.generate(style="json", name="QCSP.json")
+        # Instance.seed(123)
+        # v = Vessel(b=10, c=200, f=0.5, d=1.0, g=0.0, n=20, loc="uni")
+        # qu = Quay(2, t=1, ready_time=0)
+        # instance = Instance(safety_margin=1, vessel=v, quay=qu)
+        # instance.generate(style="json", name="test.json")
 
         # v = Vessel(b=15, c=400, f=0.5, d=1, g=0.0, loc='uni', n=50)
         # import copy
