@@ -1,6 +1,5 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-__author__ = 'Chen Jiang Hang'
 
 import checker
 
@@ -144,5 +143,5 @@ class QC(object):
     __repr__ = __str__
 
 if __name__ == "__main__":
-    # print QC()
     pass
+    # print QC()

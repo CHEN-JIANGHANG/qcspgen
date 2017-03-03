@@ -1,6 +1,5 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-__author__ = 'Chen Jiang Hang'
 
 from qcspgen_exception import QCSPGenException
 from task import Task

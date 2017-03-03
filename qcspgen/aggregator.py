@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-__author__ = 'Chen Jiang Hang'
+
 
 from qcspgen_exception import QCSPGenException
 import functools
@@ -23,7 +23,7 @@ def _verify_type(func):
 
 class Aggregator(object):
     """
-    python list like base class, example:
+    python list like base class to store items in the same type, example:
     ::
 
         a = Aggregator(str)

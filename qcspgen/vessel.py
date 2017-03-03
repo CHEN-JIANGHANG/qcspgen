@@ -1,6 +1,5 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-__author__ = 'Chen Jiang Hang'
 
 from task import Task
 from bay import Bay
@@ -43,8 +42,8 @@ class _Parameter(object):
 class Vessel(Aggregator):
     """
     vessel class which is an aggregator of bays (BTW, bay is an aggregator of tasks). For detailed construction of a
-    vessel object, please refer to *A unified approach for the evaluation of quay crane scheduling models and algorithms*,
-    published in **Computer & Operations Research**
+    vessel object, please refer to *A unified approach for the evaluation of quay crane scheduling models and algorithms
+    *, published in **Computer & Operations Research**
 
     :param std: to determine the standard deviation for task distribution. The applied standard deviation is std\*the \
     of number of bays. The default std is set to 0.25.
@@ -278,7 +277,7 @@ class Vessel(Aggregator):
         self.tasks.sort(key=lambda x: x.processing_time, reverse=True)
 
         for t in self.tasks:
-            bay_selected = getattr(self, "_%s_distribution" % pattern)()
+            bay_selected = getattr(self, "%s_distribution" % pattern)()
             bay = self.bays[bay_selected - 1]
             if bay.remaining_capacity >= t.processing_time:
                 bay.append(t)
@@ -318,15 +317,15 @@ class Vessel(Aggregator):
 
         self.tasks.sort(key=lambda x: x.index)
 
-    def _uni_distribution(self):
+    def uni_distribution(self):
         return random.randint(1, self.bay_size)
 
-    def _cl1_distribution(self):
+    def cl1_distribution(self):
         mean = self.parameter.mean1
         std = self.parameter.std
         return Vessel.sample_gauss(self.bay_size, mean, std)
 
-    def _cl2_distribution(self):
+    def cl2_distribution(self):
         mean = random.choice([self.parameter.mean1, self.parameter.mean2])
         std = self.parameter.std
         return Vessel.sample_gauss(self.bay_size, mean, std)

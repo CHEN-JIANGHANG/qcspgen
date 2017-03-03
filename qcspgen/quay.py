@@ -1,6 +1,5 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-__author__ = 'Chen Jiang Hang'
 
 from qc import QC
 from qcspgen_exception import QCSPGenException

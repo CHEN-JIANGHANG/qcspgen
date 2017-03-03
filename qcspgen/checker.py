@@ -1,14 +1,15 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-__author__ = 'Chen Jiang Hang'
+
 
 from qcspgen_exception import QCSPGenException
 import re
 import inspect
 import functools
+import itertools
 
 
-def _verify_type(data, t, prefix=""):
+def verify_type(data, t, prefix=""):
     """
     function to check if `data` is type `t`. If no, raise a QCSPGenException.
 
@@ -24,7 +25,7 @@ def _verify_type(data, t, prefix=""):
     return data
 
 
-def _verify_is_in(data, data_range):
+def verify_is_in(data, data_range):
     """
     function to check if `data` is in `data_range`. If no, raise a QCSPGenException.
 
@@ -39,7 +40,7 @@ def _verify_is_in(data, data_range):
     return data
 
 
-def _verify_numerical_type(data, t=(int, float), lb=0.0, ub=float('inf'), prefix="", left_tight=True, right_tight=True):
+def verify_numerical_type(data, t=(int, float), lb=0.0, ub=float('inf'), prefix="", left_tight=True, right_tight=True):
     """
     function to check the input `data` is numerical and besides, it is in the range of (lb, ub) or [lb, ub] or (lb, ub],
     or [lb, ub).
@@ -71,7 +72,7 @@ def _verify_numerical_type(data, t=(int, float), lb=0.0, ub=float('inf'), prefix
     return data
 
 
-def _compulsory_kwargs(kwargs, compulsory):
+def compulsory_kwargs(kwargs, compulsory):
     """
     function to check if `kwargs` contains `compulsory` or not. If no, raise a QCSPGenException.
 
@@ -84,7 +85,12 @@ def _compulsory_kwargs(kwargs, compulsory):
             raise QCSPGenException("- Compulsory kwargs: %r. %s is missing!" % (compulsory, k))
 
 
-class _Interval(object):
+class Interval(object):
+    """
+    class for value pair in the format (lb, ub) or [lb, ub] or (lb, ub], or [lb, ub). Constructed by supplying
+    a string of aforementioned format.
+    """
+
     left = float('-inf')
     right = float('inf')
     left_tight = False
@@ -92,10 +98,11 @@ class _Interval(object):
     left_symbol = '('
     right_symbol = ')'
 
+    # left symbol, left interval value, right interval value, right symbol
     DIGIT_PATTERN = re.compile(r'([[(])(.*),(.*)([])])')
 
     def __init__(self, doc):
-        self.left_symbol, a, b, self.right_symbol = _Interval.DIGIT_PATTERN.search(doc.strip()).groups()
+        self.left_symbol, a, b, self.right_symbol = Interval.DIGIT_PATTERN.search(doc.strip()).groups()
         if self.left_symbol is '[':
             self.left_tight = True
         if self.right_symbol is ']':
@@ -128,20 +135,24 @@ class _Interval(object):
         return ''.join([self.left_symbol, '%.1f, %.1f' % (self.left, self.right), self.right_symbol])
 
 
-class _ArgElement(object):
+class ArgElement(object):
+    """
+    class to analyze docstring of functions/classes in order to make sure variable prefix/range/type are correct.
+    For example, ':param index: prefix:``index of a bay``with type:``int``in range:``[1,inf)``' is an element of
+    _ArgElement, which needs to be checked in functions
+    """
     name = None
     prefix = ""
     type = None
     range = None
     to_consider = True
 
-    # PATTERN_TEMPLATE = r':param {0}:.*(?:<{1}>(.*)</{1}>).*'
     PATTERN_TEMPLATE = r':param {0}:.*{1}:``(.*?)``'
 
     def __init__(self, name, doc):
-        prefix_pattern = re.compile(_ArgElement.PATTERN_TEMPLATE.format(name, 'prefix'))
-        range_pattern = re.compile(_ArgElement.PATTERN_TEMPLATE.format(name, 'range'))
-        type_pattern = re.compile(_ArgElement.PATTERN_TEMPLATE.format(name, 'type'))
+        prefix_pattern = re.compile(ArgElement.PATTERN_TEMPLATE.format(name, 'prefix'))
+        range_pattern = re.compile(ArgElement.PATTERN_TEMPLATE.format(name, 'range'))
+        type_pattern = re.compile(ArgElement.PATTERN_TEMPLATE.format(name, 'type'))
 
         self.name = name
 
@@ -157,16 +168,17 @@ class _ArgElement(object):
 
         try:
             if self.is_numeric():
-                self.range = _Interval(range_pattern.search(doc).group(1))
+                self.range = Interval(range_pattern.search(doc).group(1))
             else:
-                self.range = self.split(range_pattern.search(doc).group(1).strip()[1:-1])
+                self.range = ArgElement.split(range_pattern.search(doc).group(1).strip()[1:-1])
         except (AttributeError, TypeError):
             pass
 
         if self.type is None and self.range is None:
             self.to_consider = False
 
-    def split(self, t):
+    @staticmethod
+    def split(t):
         return [a.strip() for a in t.split(',')]
 
     def is_numeric(self):
@@ -179,25 +191,39 @@ class _ArgElement(object):
 
 
 def func_arg_check(func):
+    """
+    a decoration function to do argument properties check!
+    Note that if docstring of func is empty then no checking will be conducted.
+
+    :param func: function
+    :return: a wrapper
+    """
+
     doc_str = func.__doc__
 
     arg_elements = dict()
     for m in re.compile(r':param (.*?):').findall(doc_str):
-        b = _ArgElement(m, doc_str)
+        b = ArgElement(m, doc_str)
         if b.to_consider:
             arg_elements.update({m: b})
 
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
         message = ""
+        argspect = inspect.getargspec(func)
         for a in arg_elements.iterkeys():
             try:
-                data = args[inspect.getargspec(func).args.index(a)]
+                data = args[argspect.args.index(a)]
             except (ValueError, IndexError):
                 try:
                     data = kwargs[a]
                 except KeyError:
-                    raise QCSPGenException("- Compulsory kwarg %s is missing!" % a)
+                    try:
+                        # it's value may appear as default
+                        used_defaults = argspect.defaults[len(argspect.defaults)-len(argspect.args)+len(args):]
+                        data = list(itertools.chain(args, used_defaults))[argspect.args.index(a)]
+                    except:
+                        raise QCSPGenException("- Compulsory kwarg %s is missing!" % a)
 
             if arg_elements[a].type:
                 if not('float' in arg_elements[a].type and type(data).__name__ in ('float', 'int') or
@@ -207,11 +233,23 @@ def func_arg_check(func):
             if arg_elements[a].range:
                 if (arg_elements[a].is_numeric() and not arg_elements[a].range.check_range(data)) or \
                         (not arg_elements[a].is_numeric() and data not in arg_elements[a].range):
-                    message += "- %s not in range %s" % (arg_elements[a].prefix, arg_elements[a].range)
+                    message += "- %s not in range %s\n" % (arg_elements[a].prefix, arg_elements[a].range)
         if message is not "":
             raise QCSPGenException(message)
         return func(*args, **kwargs)
     return wrapper
 
+
 if __name__ == "__main__":
     pass
+    # @func_arg_check
+    # def test():
+    #     """
+    #     :param value: prefix:``task index`` with type:``int`` in range:``(0,inf)``
+    #     :param a: prefix:``a tester`` with type:``float`` in range:``(0,1)``
+    #     """
+    #     print "hello"
+    # try:
+    #     test(value=2)
+    # except QCSPGenException, e:
+    #     e.display()
