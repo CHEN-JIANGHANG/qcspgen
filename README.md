@@ -36,7 +36,7 @@ try:
 	# b: number of bays
 	# c: capacity per bay
 	# f: handling rate
-	# loc: location parameter ["uni", "cl1", "cl2"], for the meanings of these three location options, please refer to ["the paper"][3]
+	# loc: location parameter ["uni", "cl1", "cl2"]
 	# d: precedence density
 	# g: non-simultaneity density
 	# for advanced user, you can also specify the parameters std and means for task distribution
